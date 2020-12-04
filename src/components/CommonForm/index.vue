@@ -22,15 +22,18 @@
 <script type="text/ecmascript-6">
 export default {
   props: {
-    inline: Boolean,
-    form: {
-      a: 1
+    inline: {
+      type:Boolean,
+      default:false
     },
-    formLabel: [
-      {
-        a: 1
-      }
-    ]
+    form: {
+      type:Object,
+      default: []
+    },
+    formLabel: {
+      type:Array,
+      default:[]
+    }
   },
   // inline 属性可以让表单域变为行内的表单域
   // form 表单数据 formLabel 是标签数据

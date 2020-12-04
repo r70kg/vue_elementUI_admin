@@ -10,7 +10,7 @@
         </el-col>
       </el-row>
       <!--stripe	是否为斑马纹  v-loading  -->
-      <el-table v-loading="config.loading" :data="tableData" height="90%" stripe>
+      <el-table v-loading="config.loading" :data="tableData" stripe>
         <!--第一行为序号 默认写死-->
         <el-table-column label="序号" width="85">
           <!--slot-scope="scope" 这里取到当前单元格,scope.$index就是索引 默认从0开始这里从1开始-->
@@ -25,8 +25,9 @@
           :key="item.prop"
           show-overflow-tooltip
           :label="item.label"
-          :width="item.width ? item.width : 125"
+
         >
+
           <!--其实可以在上面:prop="item.prop"就可以显示表单数据 这里设置插槽的方式话更加灵活 我们可以写样式-->
           <template slot-scope="scope">
             <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span>
@@ -43,14 +44,16 @@
       </el-table>
 
       <!--分页-->
-      <el-pagination
-        class="pager"
-        layout="prev, pager, next"
-        :total="config.total"
-        :current-page.sync="config.page"
-        :page-size="20"
-        @current-change="changePage"
-      />
+      <div class="pagination-container">
+        <el-pagination
+          class="pager"
+          layout="prev, pager, next"
+          :total="config.total"
+          :current-page.sync="config.page"
+          :page-size="10"
+          @current-change="changePage"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -59,14 +62,17 @@
 // config分页数据，这里面至少包括当前页码 总数量
 export default {
   props: {
-    tableData: [
-      { a: 1 }
-    ],
-    tableLabel: [
-      { a: 1 }
-    ],
+    tableData: {
+      type:Array,
+      default: []
+    },
+    tableLabel: {
+      type:Array,
+      default: []
+    },
     config: {
-      a: 1
+      type:Object,
+      default:{}
     }
   },
   data() {

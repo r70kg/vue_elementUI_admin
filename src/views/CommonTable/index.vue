@@ -1,5 +1,5 @@
 <template>
-  <div class="manage">
+  <div class="manage app-container">
     <el-dialog :title="operateType === 'add' ? '新增用户' : '更新用户'" :visible.sync="isShow">
       <common-form ref="form" :form-label="operateFormLabel" :form="operateForm" />
       <div slot="footer" class="dialog-footer">
@@ -32,7 +32,7 @@ export default {
     return {
       listQuery: {
         page: 1,
-        limit: 20,
+        limit:10,
         importance: undefined,
         title: undefined,
         type: undefined,
