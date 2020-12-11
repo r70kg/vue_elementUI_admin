@@ -4,8 +4,8 @@
  */
 import axios from 'axios'
 import store from '@/store'
-// import { MessageBox, Message } from 'element-ui'
-import { getToken } from '@/utils/auth'
+import { MessageBox, Message } from 'element-ui'
+import {getToken} from '@/utils/auth'
 
 // 请求基本配置
 const config = {
@@ -59,7 +59,7 @@ server.interceptors.request.use(
   error => {
     // do something with request error
     console.log(error) // for debug
-    // return Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 
@@ -67,65 +67,31 @@ server.interceptors.request.use(
 server.interceptors.response.use(
   response => {
     const res = response.data
+
+    // 请求成功标识码
+    let success_code = 0;
+
+    console.log('server.interceptors.response :')
     console.log(res)
+    return res
 
-    /* if (res.code == 200) {
+    if (res.code == success_code) {
       return res
-    } else if (res.code === 401 && !options.url.includes(loginUrl)) { // 如果当前状态码为401并且请求的不是登陆接口
-      /!**
-       * 将未授权接口缓存起来 retryOriginalRequest 这个 Promise 函数很关键，它一直处于等待状态。
-       * 只有当token刷新成功后，onAccessTokenFetched 这个函数执行了回调函数，返回了 resolve 状态
-       * @type {Promise<any>}
-       *!/
-
-      const retryOriginalRequest = new Promise(resolve => {
-        addCallbacks(newToken => {
-          // 表示用新的token去替换掉原来的token
-          options.header.Authorization = newToken
-          // 替换掉url -- 因为baseURL会扩展请求url
-          options.url = options.url.replace(process.env.VUE_APP_BASE_API, '')
-          resolve(service.request(options)) // 调用resolve请求队列里面接口
-        })
-
-        // 无感刷新Token
-        if (!isRefreshing) {
-          isRefreshing = true
-          refreshToken().then(res => { // 用rftoken获取新的token
-            const newToken = res.token
-            const newRefreshToken = res.refreshToken
-            // setToken()
-            // setRefreshToken()
-            onAccessTokenFetched(newToken)
-          }).catch(() => {
-            // 刷新token报错的话, 就需要跳转到登录页面
-            // setToken('')
-            // setRefreshToken('')
-
-            alert(res.message || 'Error')
-            // to re-login
-
-            /!* store.dispatch('user/resetToken').then(() => {
-                location.reload()
-            })*!/
-          }).finally(() => {
-            isRefreshing = false
-          })
-        }
-      })
-      return retryOriginalRequest // 将token过期期间请求的接口包装成promise返回，等待刷新token后重新请求
     } else {
       Message({
-        message: res.message || 'Error',
+        message: res.msg || 'Error',
         type: 'error',
-        duration: 3 * 1000
+        duration: 2 * 1000
       })
-
       return res || 'Error'
-      // return Promise.reject(new Error(res || 'Error'))
-    }*/
+    }
   },
   error => {
-    console.log('err' + error) // for debug
+    Message({
+      message: error || 'Error',
+      type: 'error',
+      duration: 2 * 1000
+    })
     return Promise.reject(error)
   }
 )

@@ -1,5 +1,5 @@
 export default {
-  logIn: '/users/bar',
-  loginOut: '/api/loginOut'
+  logIn: '/userInfomation/sys/pcLogin',
+  loginOut: ''
 }
 

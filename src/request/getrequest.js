@@ -70,9 +70,9 @@ Myserver.prototype.sendMes = function(moduleName, name, url, config = {}) {
      */
   var defaultFn = function(mes) {
     console.log(mes)
-    if (mes.data) {
+    if (mes.result) {
       if (self.nowhandle && self.nowhandle[bindName]) {
-        self.nowhandle[bindName] = mes.data
+        self.nowhandle[bindName] = mes.result
       }
     }
   }

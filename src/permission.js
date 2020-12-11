@@ -20,7 +20,10 @@ router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
   console.log(getToken())
   const hasToken = getToken()
+  // const hasToken = 0
 
+
+  // 暂注释权限判断功能
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
@@ -29,6 +32,7 @@ router.beforeEach(async(to, from, next) => {
     } else {
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
+
       if (hasRoles) {
         next()
       } else {

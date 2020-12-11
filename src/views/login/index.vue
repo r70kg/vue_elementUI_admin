@@ -76,9 +76,11 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+import {MIXIN} from '@/mixins/index'
 
 export default {
   name: 'Login',
+  mixins:[MIXIN],
   components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -97,8 +99,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '3102009',
+        password: '000000'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -109,7 +111,8 @@ export default {
       loading: false,
       showDialog: false,
       redirect: undefined,
-      otherQuery: {}
+      otherQuery: {},
+      test:null
     }
   },
   watch: {
@@ -126,6 +129,7 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+
   },
   mounted() {
     if (this.loginForm.username === '') {
@@ -203,7 +207,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style  type="text/scss" lang="scss">
+
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
@@ -250,7 +255,7 @@ $cursor: #fff;
 }
 </style>
 
-<style lang="scss" scoped>
+<style type="text/scss" lang="scss" scoped>
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;

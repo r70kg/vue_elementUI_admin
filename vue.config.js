@@ -17,7 +17,9 @@ const port = process.env.port || process.env.npm_config_port || 9527 // dev port
 
 // Proxy
 const devProxy = [
-  '/users'
+  // 用户信息
+  '/userInfomation',
+  '/buiness'
 ] // 代理
 
 
@@ -56,7 +58,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development1',
   productionSourceMap: false,
   devServer: {
-    // proxy: proxyObj,
+    proxy: proxyObj,
     // 配置代理
     port: port,
     open: true,
@@ -66,7 +68,7 @@ module.exports = {
       errors: true
     },
     // 能够在其他所以的中间件之前执行自定义的中间件
-    before: require('./mock/mock-server.js')
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
