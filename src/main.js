@@ -24,6 +24,7 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -47,6 +48,9 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
+
+
+
 
 new Vue({
   el: '#app',

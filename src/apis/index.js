@@ -6,7 +6,7 @@
 import login from './login.js'
 import user from './user'
 // 统计
-import stc from './static.js'
+import stc from './stc.js'
 
 import myserver from '../request/getrequest.js'
 

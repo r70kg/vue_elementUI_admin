@@ -37,7 +37,7 @@ const actions = {
   login({commit}, userInfo) {
     const {username, password} = userInfo
     return new Promise((resolve, reject) => {
-        /*myserver.login.logIn({
+        myserver.login.logIn({
           type: 'post',
           data: {login: username.trim(), password: password, project: 'shanghai'},
           success: (res) => {
@@ -59,9 +59,9 @@ const actions = {
               reject();
             }
           }
-        })*/
-      setToken('admin')
-      resolve()
+        })
+      /*setToken('admin')
+      resolve()*/
     })
   },
 

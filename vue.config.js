@@ -19,7 +19,7 @@ const port = process.env.port || process.env.npm_config_port || 9527 // dev port
 const devProxy = [
   // 用户信息
   '/userInfomation',
-  '/buiness'
+  '/business'
 ] // 代理
 
 

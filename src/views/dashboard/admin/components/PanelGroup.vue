@@ -1,5 +1,26 @@
 <template>
   <el-row :gutter="40" class="panel-group">
+    <el-col
+      :xs="12"
+      :sm="12"
+      :lg="6"
+      class="card-panel-col"
+    >
+      <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+        <div class="card-panel-icon-wrapper icon-people">
+          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            指导医师人数
+          </div>
+          <count-to :start-val="0" :end-val="panelGroupData.teacherNum" :duration="2600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+
+
+
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
         <div class="card-panel-icon-wrapper icon-people">
@@ -7,9 +28,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            New Visits
+            住院医师人数
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="panelGroupData.studentNum" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -20,9 +41,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Messages
+            病种完成例数
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="panelGroupData.diseaseCompletedNum" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -33,9 +54,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Purchases
+            临床技能操作例数
           </div>
-          <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="panelGroupData.skillCompletedNum" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -46,9 +67,23 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            Shoppings
+           手术完成例数
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="panelGroupData.operationCompletedNum" :duration="3600" class="card-panel-num" />
+        </div>
+      </div>
+    </el-col>
+
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
+        <div class="card-panel-icon-wrapper icon-shopping">
+          <svg-icon icon-class="shopping" class-name="card-panel-icon" />
+        </div>
+        <div class="card-panel-description">
+          <div class="card-panel-text">
+            学习完成例数
+          </div>
+          <count-to :start-val="0" :end-val="panelGroupData.teachingActivitiesCompletedNum" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -61,6 +96,20 @@ import CountTo from 'vue-count-to'
 export default {
   components: {
     CountTo
+  },
+  props:{
+    panelGroupData:{
+      default:()=>{
+        return {
+          teacherNum:0,
+          studentNum:0,
+          diseaseCompletedNum:0,
+          skillCompletedNum:0,
+          operationCompletedNum:0,
+          teachingActivitiesCompletedNum:0
+        }
+      }
+    }
   },
   methods: {
     handleSetLineChartData(type) {

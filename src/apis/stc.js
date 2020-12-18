@@ -4,5 +4,6 @@
  */
 
 export default {
-  overview: '/report/province/medical/report'
+  overview: '/report/province/medical/report',
+  toTal:'/business/report/base/count'
 }
